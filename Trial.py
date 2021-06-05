@@ -20,7 +20,7 @@ sample_rate = wf.getframerate()
 SAMPLE_FREQUENCY = sample_rate
 NUM_OF_CHANNEL = num_of_channels
 NUM_OF_FRAMES = 480
-BITRATE = 16000
+BITRATE = 256000
 #print "Audio configuration : "+str(sample_width)+" "+str(sample_rate)+" "+str(num_of_channels)
 print("BITRATE:"+str(BITRATE))
 print("sample_width:"+str(sample_width))
@@ -49,9 +49,6 @@ print("Bitrate = " + str(bitrate) + ", vbr = " + str(vbr))
 dec = opuslib.api.decoder.create(SAMPLE_FREQUENCY, NUM_OF_CHANNEL)
 data = wf.readframes(NUM_OF_FRAMES)
 count = 0
-print("Lenght:"+str(len(data))+"Num_of_frames*sample_width"+str(NUM_OF_FRAMES*sample_width*NUM_OF_CHANNEL))
-if(data):
-	print("Valid")
 while data and len(data) == NUM_OF_FRAMES*sample_width*NUM_OF_CHANNEL:
     # Opus Encoding
     encoded_data = opuslib.api.encoder.encode(enc, data, NUM_OF_FRAMES, len(data))
