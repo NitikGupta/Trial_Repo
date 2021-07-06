@@ -1,7 +1,6 @@
 import sys
 from PyQt4 import QtGui
 
-import numpy as np
 import matplotlib
 matplotlib.use("Qt4Agg")
 import matplotlib.pyplot as plt
@@ -29,7 +28,7 @@ class CustomFigCanvas(mplCanvas):
         mplCanvas.__init__(self, *args, **kwargs)
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.updateFigure)
-        self.timer.start(1000)
+        self.timer.start(100)
 
     def init_figure(self):
         global i,j
@@ -37,8 +36,6 @@ class CustomFigCanvas(mplCanvas):
         self.values1 = [0]
         self.xaxis1 = [i]
         self.xaxis2 = [j]
-        yaxis = np.array(self.values)
-        # yaxis1 = np.array(self.values1)
         self.ax.set_title("Realtime Waveform Plot")
         self.ax.set_xlabel("Count")
         self.ax.set_ylabel("PER")
@@ -53,8 +50,6 @@ class CustomFigCanvas(mplCanvas):
             self.xaxis1.append(i)
             self.values.append(random.randrange(0,100))
         else:
-            if(j==0):
-                j=j+i
             j=j+1
             self.xaxis2.append(j)
             self.values1.append(random.randrange(0,100))
